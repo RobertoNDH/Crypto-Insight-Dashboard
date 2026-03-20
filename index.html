@@ -4,10 +4,26 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>crypto-insight-dashboard</title>
+    <title>Prism | Crypto Dashboard</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+        <header>
+            <h1>Prism Dashboard</h1>
+        </header>
+        
+        <main>
+            <section id="portfolio-section">
+                <h2>Mi Cartera</h2>
+                <div id="portfolio-container"></div>
+            </section>
+
+            <section id="market-section">
+                <h2>Mercado (Top 20)</h2>
+                <div id="market-container"></div>
+            </section>
+        </main>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
