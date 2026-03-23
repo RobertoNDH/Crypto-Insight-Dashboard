@@ -41,6 +41,9 @@ export const renderPortfolio = (assets: PortfolioAsset[], containerId: string) =
                 ${isProfit ? '▲' : '▼'} ${formatter.format(Math.abs(profitLoss))}
               </p>
             </div>
+            <div class="item-actions">
+              <button class="btn-remove" data-id="${asset.id}">Vender todo</button>
+            </div>
           </div>
         `;
       }).join('')}
