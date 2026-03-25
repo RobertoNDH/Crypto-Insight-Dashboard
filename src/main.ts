@@ -63,6 +63,19 @@ const initApp = async () => {
       }
     });
 
+    const searchInput = document.getElementById('search-coin') as HTMLInputElement;
+
+    searchInput?.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value.toLowerCase();
+
+      const filteredCoins = coins.filter(coin => 
+        coin.name.toLowerCase().includes(query) || 
+        coin.symbol.toLowerCase().includes(query)
+      );
+
+      renderMarket(filteredCoins, marketId);
+    });
+
   } catch (error) {
     console.error("Error al iniciar Prism:", error);
     const marketEl = document.getElementById(marketId);
