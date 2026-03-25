@@ -9,6 +9,11 @@ export const renderMarket = (coins: Coin[], containerId: string) => {
     currency: 'USD',
   });
 
+  if (coins.length === 0) {
+    container.innerHTML = '<p class="no-results">No se encontraron resultados para tu búsqueda.</p>';
+    return;
+  }
+
   const html = `
     <table class="market-table">
       <thead>
