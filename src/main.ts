@@ -76,6 +76,26 @@ const initApp = async () => {
       renderMarket(filteredCoins, marketId);
     });
 
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const views = document.querySelectorAll('.view-section');
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetView = btn.getAttribute('data-view');
+
+        navButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        views.forEach(view => {
+          if (view.id === `view-${targetView}`) {
+            view.classList.remove('hidden');
+          } else {
+            view.classList.add('hidden');
+          }
+        });
+      });
+    });
+
   } catch (error) {
     console.error("Error al iniciar Prism:", error);
     const marketEl = document.getElementById(marketId);

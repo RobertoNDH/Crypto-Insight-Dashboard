@@ -8,24 +8,39 @@
   </head>
   <body>
     <div id="app">
-        <header>
-            <h1>Prism Dashboard</h1>
+        <header class="premium-header">
+            <div class="header-content">
+                <div class="brand">
+                <div class="logo-icon">P</div>
+                <h1>PRISM<span>.</span></h1>
+                </div>
+                
+                <nav class="main-nav">
+                <button class="nav-btn active" data-view="market">Mercado</button>
+                <button class="nav-btn" data-view="portfolio">Mi Cartera</button>
+                </nav>
+
+                <div id="global-stats" class="header-stats">
+                </div>
+            </div>
         </header>
-        
-        <main>
-            <section id="portfolio-section">
-                <h2>Mi Cartera</h2>
-                <div id="portfolio-container"></div>
+
+        <main class="container">
+            <section id="view-market" class="view-section">
+                <div class="section-title">
+                <h2>Mercado Global</h2>
+                <div class="search-box">
+                    <input type="text" id="search-coin" placeholder="Buscar moneda...">
+                </div>
+                </div>
+                <div id="market-container" class="card-section"></div>
             </section>
 
-            <section class="card-section">
-                <div class="section-header">
-                    <h2>Mercado</h2>
-                    <div class="search-box">
-                        <input type="text" id="search-coin" placeholder="Buscar moneda (ej: BTC)...">
-                    </div>
+            <section id="view-portfolio" class="view-section hidden">
+                <div class="section-title">
+                <h2>Mi Patrimonio</h2>
                 </div>
-                <div id="market-container" class="scroll-container"></div>
+                <div id="portfolio-container" class="card-section"></div>
             </section>
         </main>
     </div>
