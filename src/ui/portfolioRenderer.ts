@@ -29,20 +29,20 @@ export const renderPortfolio = (assets: PortfolioAsset[], containerId: string) =
         return `
           <div class="portfolio-item">
             <div class="item-info">
-              <img src="${asset.image}" alt="${asset.name}" width="24">
+              <img src="${asset.image}" alt="${asset.name}" width="32">
               <div>
                 <strong>${asset.name}</strong>
                 <span>${asset.amountOwned.toFixed(4)} ${asset.symbol}</span>
               </div>
             </div>
             <div class="item-stats">
-              <p>Valor: ${formatter.format(asset.amountOwned * asset.currentPrice)}</p>
+              <p>${formatter.format(asset.amountOwned * asset.currentPrice)}</p>
               <p class="${isProfit ? 'text-green' : 'text-red'}">
                 ${isProfit ? '▲' : '▼'} ${formatter.format(Math.abs(profitLoss))}
               </p>
             </div>
             <div class="item-actions">
-              <button class="btn-remove" data-id="${asset.id}">Vender todo</button>
+              <button class="btn-remove" data-id="${asset.id}">Vender</button>
             </div>
           </div>
         `;
