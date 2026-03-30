@@ -15,7 +15,11 @@ export const renderPortfolio = (assets: PortfolioAsset[], containerId: string) =
     return;
   }
 
-  const totalPortfolioValue = assets.reduce((acc, asset) => acc + (asset.amountOwned * asset.currentPrice), 0);
+  const totalPortfolioValue = assets.reduce((acc, asset) => {
+    const price = asset.currentPrice ?? 0;
+    const amount = asset.amountOwned ?? 0;
+    return acc + (amount * price);
+  }, 0);
 
   const totalDisplay = document.getElementById('portfolio-total-value');
   if (totalDisplay) totalDisplay.textContent = formatter.format(totalPortfolioValue);
@@ -23,7 +27,11 @@ export const renderPortfolio = (assets: PortfolioAsset[], containerId: string) =
   const html = `
     <div class="portfolio-list">
       ${assets.map(asset => {
-        const profitLoss = (asset.currentPrice - asset.avgPurchasePrice) * asset.amountOwned;
+        const currentPrice = asset.currentPrice ?? 0;
+        const avgPrice = asset.avgPurchasePrice ?? 0;
+        const amount = asset.amountOwned ?? 0;
+        
+        const profitLoss = (currentPrice - avgPrice) * amount;
         const isProfit = profitLoss >= 0;
 
         return `
@@ -32,11 +40,11 @@ export const renderPortfolio = (assets: PortfolioAsset[], containerId: string) =
               <img src="${asset.image}" alt="${asset.name}" width="32">
               <div>
                 <strong>${asset.name}</strong>
-                <span>${asset.amountOwned.toFixed(4)} ${asset.symbol}</span>
+                <span>${amount.toFixed(4)} ${asset.symbol}</span>
               </div>
             </div>
             <div class="item-stats">
-              <p>${formatter.format(asset.amountOwned * asset.currentPrice)}</p>
+              <p>${formatter.format(amount * currentPrice)}</p>
               <p class="${isProfit ? 'text-green' : 'text-red'}">
                 ${isProfit ? '▲' : '▼'} ${formatter.format(Math.abs(profitLoss))}
               </p>
